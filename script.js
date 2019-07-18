@@ -1,13 +1,23 @@
-class Stopwatch {
-	constructor(display) {
-		this.running = false;
-		this.display = display;
-		this.reset();
-		this.print(this.times);
+// add class and set beginning
+class Stopwatch extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			running: false,
+			minutes: 0,
+			seconds: 0,
+			miliseconds: 0
+		}
 	}
+	render() {
+		return (
+			document.getElementById('app')
+		);
+	}
+	
 
-    // reset spotwatch
-	reset() {
+	// reset stopwatch
+	reset () {
 		this.times = {
 			minutes: 0,
 			seconds: 0,
@@ -74,7 +84,6 @@ function pad0(value) {
 	}
 	return result;
 }
-
 const stopwatch = new Stopwatch(
 	document.querySelector('.stopwatch')
 );
@@ -88,3 +97,7 @@ stopButton.addEventListener('click', () => stopwatch.stop());
 
 let resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', () => stopwatch.resetTimer());
+
+// react
+const app = React.createElement(Stopwatch);
+ReactDOM.render(app, document.getElementById("app"));

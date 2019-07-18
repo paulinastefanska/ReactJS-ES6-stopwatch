@@ -4,20 +4,37 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Stopwatch = function () {
-	function Stopwatch(display) {
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// add class and set beginning
+var Stopwatch = function (_React$Component) {
+	_inherits(Stopwatch, _React$Component);
+
+	function Stopwatch(props) {
 		_classCallCheck(this, Stopwatch);
 
-		this.running = false;
-		this.display = display;
-		this.reset();
-		this.print(this.times);
+		var _this = _possibleConstructorReturn(this, (Stopwatch.__proto__ || Object.getPrototypeOf(Stopwatch)).call(this, props));
+
+		_this.state = {
+			running: false,
+			minutes: 0,
+			seconds: 0,
+			miliseconds: 0
+		};
+		return _this;
 	}
 
-	// reset spotwatch
-
-
 	_createClass(Stopwatch, [{
+		key: 'render',
+		value: function render() {
+			return document.getElementById('app');
+		}
+
+		// reset stopwatch
+
+	}, {
 		key: 'reset',
 		value: function reset() {
 			this.times = {
@@ -48,12 +65,12 @@ var Stopwatch = function () {
 	}, {
 		key: 'start',
 		value: function start() {
-			var _this = this;
+			var _this2 = this;
 
 			if (!this.running) {
 				this.running = true;
 				this.watch = setInterval(function () {
-					return _this.step();
+					return _this2.step();
 				}, 10);
 			}
 		}
@@ -104,7 +121,7 @@ var Stopwatch = function () {
 	}]);
 
 	return Stopwatch;
-}();
+}(React.Component);
 
 // add 0 before one-digit number 
 
@@ -116,7 +133,6 @@ function pad0(value) {
 	}
 	return result;
 }
-
 var stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
 
 // buttons click
@@ -134,3 +150,7 @@ var resetButton = document.getElementById('reset');
 resetButton.addEventListener('click', function () {
 	return stopwatch.resetTimer();
 });
+
+// react
+var app = React.createElement(Stopwatch);
+ReactDOM.render(app, document.getElementById("app"));
