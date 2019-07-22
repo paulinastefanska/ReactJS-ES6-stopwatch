@@ -10,11 +10,29 @@ class Stopwatch extends React.Component {
 		}
 	}
 	render() {
+		const lapList = this.state.lapTimes.map(item => {
+			return <li key={item}>{item}</li>;
+		});
 		return (
-			document.getElementById('app')
-		);
-	}
-	
+			<div className="counter">
+				<nav className="controls">
+					<a href="#" className="button" onClick={this.start}>
+						Start
+					</a>
+					<a href="#" className="button" onClick={this.stop}>
+						Stop
+					</a>
+					<a href="#" className="button" onClick={this.reset}>
+						Reset All
+					</a>
+				</nav>
+				<div className="stopwatch" id="watch">
+					{this.format()}
+				</div>
+			</div>
+	    );
+  	}
+
 
 	// reset stopwatch
 	reset () {
