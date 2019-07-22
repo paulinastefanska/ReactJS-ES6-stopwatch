@@ -22,7 +22,7 @@ class Stopwatch extends React.Component {
 					<a href="#" className="button" onClick={this.stop}>
 						Stop
 					</a>
-					<a href="#" className="button" onClick={this.reset}>
+					<a href="#" className="button" onClick={this.resetTimer}>
 						Reset All
 					</a>
 				</nav>
@@ -41,6 +41,15 @@ class Stopwatch extends React.Component {
 			seconds: 0,
 			miliseconds: 0
 		};
+	}
+
+	// add 0 before one-digit number 
+	function pad0(value) {
+		let result = value.toString();
+		if (result.length < 2) {
+	 		result = '0' + result;
+		}
+		return result;
 	}
 
 	// show stopwatch
@@ -94,27 +103,9 @@ class Stopwatch extends React.Component {
 	}
 }
 
-// add 0 before one-digit number 
-function pad0(value) {
-	let result = value.toString();
-	if (result.length < 2) {
- 		result = '0' + result;
-	}
-	return result;
-}
 const stopwatch = new Stopwatch(
 	document.querySelector('.stopwatch')
 );
-
-// buttons click
-let startButton = document.getElementById('start');
-startButton.addEventListener('click', () => stopwatch.start());
-
-let stopButton = document.getElementById('stop');
-stopButton.addEventListener('click', () => stopwatch.stop());
-
-let resetButton = document.getElementById('reset');
-resetButton.addEventListener('click', () => stopwatch.resetTimer());
 
 // react
 const app = React.createElement(Stopwatch);
