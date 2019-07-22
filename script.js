@@ -1,3 +1,12 @@
+// add 0 before one-digit number 
+function pad0(value) {
+	let result = value.toString();
+	if (result.length < 2) {
+ 		result = '0' + result;
+	}
+	return result;
+}
+
 // add class and set beginning
 class Stopwatch extends React.Component {
 	constructor(props) {
@@ -38,15 +47,6 @@ class Stopwatch extends React.Component {
 			seconds: 0,
 			miliseconds: 0
 		};
-	}
-
-	// add 0 before one-digit number 
-	function pad0(value) {
-		let result = value.toString();
-		if (result.length < 2) {
-	 		result = '0' + result;
-		}
-		return result;
 	}
 
 	// show stopwatch

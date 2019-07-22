@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -8,7 +8,17 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// add 0 before one-digit number 
+function pad0(value) {
+	var result = value.toString();
+	if (result.length < 2) {
+		result = '0' + result;
+	}
+	return result;
+}
+
 // add class and set beginning
+
 var Stopwatch = function (_React$Component) {
 	_inherits(Stopwatch, _React$Component);
 
@@ -27,15 +37,42 @@ var Stopwatch = function (_React$Component) {
 	}
 
 	_createClass(Stopwatch, [{
-		key: 'render',
+		key: "render",
 		value: function render() {
-			return document.getElementById('app');
+			return React.createElement(
+				"div",
+				{ className: "counter" },
+				React.createElement(
+					"nav",
+					{ className: "controls" },
+					React.createElement(
+						"a",
+						{ href: "#", className: "button", onClick: this.start },
+						"Start"
+					),
+					React.createElement(
+						"a",
+						{ href: "#", className: "button", onClick: this.stop },
+						"Stop"
+					),
+					React.createElement(
+						"a",
+						{ href: "#", className: "button", onClick: this.resetTimer },
+						"Reset All"
+					)
+				),
+				React.createElement(
+					"div",
+					{ className: "stopwatch", id: "watch" },
+					this.format()
+				)
+			);
 		}
 
 		// reset stopwatch
 
 	}, {
-		key: 'reset',
+		key: "reset",
 		value: function reset() {
 			this.times = {
 				minutes: 0,
@@ -47,7 +84,7 @@ var Stopwatch = function (_React$Component) {
 		// show stopwatch
 
 	}, {
-		key: 'print',
+		key: "print",
 		value: function print() {
 			this.display.innerText = this.format(this.times);
 		}
@@ -55,15 +92,15 @@ var Stopwatch = function (_React$Component) {
 		// time format
 
 	}, {
-		key: 'format',
+		key: "format",
 		value: function format(times) {
-			return pad0(times.minutes) + ':' + pad0(times.seconds) + ':' + pad0(Math.floor(times.miliseconds));
+			return pad0(times.minutes) + ":" + pad0(times.seconds) + ":" + pad0(Math.floor(times.miliseconds));
 		}
 
 		// run stopwatch
 
 	}, {
-		key: 'start',
+		key: "start",
 		value: function start() {
 			var _this2 = this;
 
@@ -78,7 +115,7 @@ var Stopwatch = function (_React$Component) {
 		// check if stopwatch is run
 
 	}, {
-		key: 'step',
+		key: "step",
 		value: function step() {
 			if (!this.running) return;
 			this.calculate();
@@ -88,7 +125,7 @@ var Stopwatch = function (_React$Component) {
 		// calculate time
 
 	}, {
-		key: 'calculate',
+		key: "calculate",
 		value: function calculate() {
 			this.times.miliseconds += 1;
 			if (this.times.miliseconds >= 100) {
@@ -104,7 +141,7 @@ var Stopwatch = function (_React$Component) {
 		// stop stopwatch
 
 	}, {
-		key: 'stop',
+		key: "stop",
 		value: function stop() {
 			this.running = false;
 			clearInterval(this.watch);
@@ -113,7 +150,7 @@ var Stopwatch = function (_React$Component) {
 		// time reset
 
 	}, {
-		key: 'resetTimer',
+		key: "resetTimer",
 		value: function resetTimer() {
 			this.reset();
 			this.print();
@@ -123,33 +160,7 @@ var Stopwatch = function (_React$Component) {
 	return Stopwatch;
 }(React.Component);
 
-// add 0 before one-digit number 
-
-
-function pad0(value) {
-	var result = value.toString();
-	if (result.length < 2) {
-		result = '0' + result;
-	}
-	return result;
-}
 var stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
-
-// buttons click
-var startButton = document.getElementById('start');
-startButton.addEventListener('click', function () {
-	return stopwatch.start();
-});
-
-var stopButton = document.getElementById('stop');
-stopButton.addEventListener('click', function () {
-	return stopwatch.stop();
-});
-
-var resetButton = document.getElementById('reset');
-resetButton.addEventListener('click', function () {
-	return stopwatch.resetTimer();
-});
 
 // react
 var app = React.createElement(Stopwatch);
