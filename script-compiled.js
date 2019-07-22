@@ -17,7 +17,7 @@ function pad0(value) {
 	return result;
 }
 
-// add class and set beginning
+// add class and set beginning 
 
 var Stopwatch = function (_React$Component) {
 	_inherits(Stopwatch, _React$Component);

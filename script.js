@@ -7,7 +7,7 @@ function pad0(value) {
 	return result;
 }
 
-// add class and set beginning
+// add class and set beginning 
 class Stopwatch extends React.Component {
 	constructor(props) {
 		super(props);
@@ -31,7 +31,7 @@ class Stopwatch extends React.Component {
 					<a href="#" className="button" onClick={this.resetTimer}>
 						Reset
 					</a>
-				</nav>
+				</nav>  
 			</div>
 	    );
   	}
