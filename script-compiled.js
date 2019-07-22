@@ -58,13 +58,8 @@ var Stopwatch = function (_React$Component) {
 					React.createElement(
 						"a",
 						{ href: "#", className: "button", onClick: this.resetTimer },
-						"Reset All"
+						"Reset"
 					)
-				),
-				React.createElement(
-					"div",
-					{ className: "stopwatch", id: "watch" },
-					this.format()
 				)
 			);
 		}

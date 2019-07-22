@@ -29,12 +29,9 @@ class Stopwatch extends React.Component {
 						Stop
 					</a>
 					<a href="#" className="button" onClick={this.resetTimer}>
-						Reset All
+						Reset
 					</a>
 				</nav>
-				<div className="stopwatch" id="watch">
-					{this.format()}
-				</div>
 			</div>
 	    );
   	}
