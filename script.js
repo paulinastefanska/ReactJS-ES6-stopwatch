@@ -10,9 +10,6 @@ class Stopwatch extends React.Component {
 		}
 	}
 	render() {
-		const lapList = this.state.lapTimes.map(item => {
-			return <li key={item}>{item}</li>;
-		});
 		return (
 			<div className="counter">
 				<nav className="controls">
