@@ -95,7 +95,7 @@ var Stopwatch = function (_React$Component) {
 			this.print();
 		}
 
-		// calculate time
+		// calculate time 
 
 	}, {
 		key: "calculate",
@@ -125,13 +125,6 @@ var Stopwatch = function (_React$Component) {
 			this.setState({ running: false });
 			clearInterval(this.watch);
 		}
-
-		// time reset
-		//resetTimer() { 
-		//	this.reset();
-		//	this.print();
-		//}
-
 	}, {
 		key: "render",
 		value: function render() {

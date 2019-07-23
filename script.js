@@ -59,7 +59,7 @@ class Stopwatch extends React.Component {
 		this.print();
 	}
 
-	// calculate time
+	// calculate time 
 	calculate() {
 		let calTime = {
 			minutes: this.state.times.minutes,
@@ -83,12 +83,6 @@ class Stopwatch extends React.Component {
 		this.setState ({ running : false });
 		clearInterval(this.watch);
 	}
-
-	// time reset
-	//resetTimer() { 
-	//	this.reset();
-	//	this.print();
-	//}
 
 	render() {
 		return (
