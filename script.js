@@ -13,24 +13,30 @@ class Stopwatch extends React.Component {
 		super(props);
 		this.state = {
 			running: false,
-			minutes: 0,
-			seconds: 0,
-			miliseconds: 0
-		} 
+			times: {
+				minutes: 0,
+				seconds: 0,
+				miliseconds: 0
+			},	
+		}
+		this.start = this.start.bind(this)
+        this.stop = this.stop.bind(this)
+        this.reset = this.reset.bind(this) 
 	}
 
 	// reset stopwatch
 	reset () {
-		this.times = {
+		this.setState ({times : {
 			minutes: 0,
 			seconds: 0,
 			miliseconds: 0
-		};
+		}},
+		this.print.bind(this));
 	}
 
 	// show stopwatch
 	print() {
-		this.display.innerText = this.format(this.times);
+		this.setState ({ display: this.format(this.state.times) });
 	}
 
 	// time format
@@ -41,59 +47,65 @@ class Stopwatch extends React.Component {
 	// run stopwatch
 	start() {
 		if (!this.state.running) {
-			this.setState.running = true;
+			this.setState ({ running : true });
 			this.watch = setInterval(() => this.step(), 10);
 		}
 	}
 
 	// check if stopwatch is run
 	step() {
-		if (!this.running) return;
+		if (!this.state.running) return;
 		this.calculate();
 		this.print();
 	}
 
 	// calculate time
 	calculate() {
-		this.state.times.miliseconds += 1;
-		if (this.times.miliseconds >= 100) {
-			this.times.seconds += 1;
-			this.times.miliseconds = 0;
+		let calTime = {
+			minutes: this.state.times.minutes,
+			seconds: this.state.times.seconds,
+			miliseconds: this.state.times.miliseconds
 		}
-		if (this.times.seconds >= 60) {
-			this.times.minutes += 1;
-			this.times.seconds = 0;
+		calTime.miliseconds += 1;
+		if (calTime.miliseconds >= 100) {
+			calTime.seconds += 1;
+			calTime.miliseconds = 0;
 		}
+		if (calTime.seconds >= 60) {
+			calTime.minutes += 1;
+			calTime.seconds = 0;
+		}
+		this.setState({ times: calTime })
 	}
 
 	// stop stopwatch 
 	stop() {
-		this.setState.running = false;
+		this.setState ({ running : false });
 		clearInterval(this.watch);
 	}
 
 	// time reset
-	resetTimer() { 
-		this.reset();
-		this.print();
-	}
+	//resetTimer() { 
+	//	this.reset();
+	//	this.print();
+	//}
 
 	render() {
 		return (
 			<div className="counter">
 				<nav className="controls">
-					<a href="#" className="button" onClick={this.start=this.start.bind(this)}>
+					<a href="#" className="button" onClick={this.start}>
 						Start
 					</a>
-					<a href="#" className="button" onClick={this.stop=this.stop.bind(this)}>
+					<a href="#" className="button" onClick={this.stop}>
 						Stop
 					</a>
-					<a href="#" className="button" onClick={this.resetTimer=this.resetTimer.bind(this)}>
+					<a href="#" className="button" onClick={this.reset}>
 						Reset
 					</a>
 				</nav>
 				<div className="stopwatch" id="watch">
-					{this.format.bind()}
+					{this.state.display}
 				</div>
 			</div>
 	    );
