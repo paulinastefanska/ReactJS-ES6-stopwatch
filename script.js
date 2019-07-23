@@ -40,7 +40,7 @@ class Stopwatch extends React.Component {
 
 	// run stopwatch
 	start() {
-		if (!this.running) {
+		if (!this.state.running) {
 			this.running = true;
 			this.watch = setInterval(() => this.step(), 10);
 		}
@@ -68,7 +68,7 @@ class Stopwatch extends React.Component {
 
 	// stop stopwatch 
 	stop() {
-		this.running = false;
+		this.state.running = false;
 		clearInterval(this.watch);
 	}
 
@@ -88,7 +88,7 @@ class Stopwatch extends React.Component {
 					<a href="#" className="button" onClick={this.stop=this.stop.bind(this)}>
 						Stop
 					</a>
-					<a href="#" className="button" onClick={this.reset=this.reset.bind(this)}>
+					<a href="#" className="button" onClick={this.resetTimer=this.resetTimer.bind(this)}>
 						Reset
 					</a>
 				</nav>

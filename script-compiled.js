@@ -72,7 +72,7 @@ var Stopwatch = function (_React$Component) {
 		value: function start() {
 			var _this2 = this;
 
-			if (!this.running) {
+			if (!this.state.running) {
 				this.running = true;
 				this.watch = setInterval(function () {
 					return _this2.step();
@@ -111,7 +111,7 @@ var Stopwatch = function (_React$Component) {
 	}, {
 		key: "stop",
 		value: function stop() {
-			this.running = false;
+			this.state.running = false;
 			clearInterval(this.watch);
 		}
 
@@ -144,7 +144,7 @@ var Stopwatch = function (_React$Component) {
 					),
 					React.createElement(
 						"a",
-						{ href: "#", className: "button", onClick: this.reset = this.reset.bind(this) },
+						{ href: "#", className: "button", onClick: this.resetTimer = this.resetTimer.bind(this) },
 						"Reset"
 					)
 				),
