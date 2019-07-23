@@ -36,37 +36,10 @@ var Stopwatch = function (_React$Component) {
 		return _this;
 	}
 
+	// reset stopwatch
+
+
 	_createClass(Stopwatch, [{
-		key: "render",
-		value: function render() {
-			return React.createElement(
-				"div",
-				{ className: "counter" },
-				React.createElement(
-					"nav",
-					{ className: "controls" },
-					React.createElement(
-						"a",
-						{ href: "#", className: "button", onClick: this.start },
-						"Start"
-					),
-					React.createElement(
-						"a",
-						{ href: "#", className: "button", onClick: this.stop },
-						"Stop"
-					),
-					React.createElement(
-						"a",
-						{ href: "#", className: "button", onClick: this.resetTimer },
-						"Reset"
-					)
-				)
-			);
-		}
-
-		// reset stopwatch
-
-	}, {
 		key: "reset",
 		value: function reset() {
 			this.times = {
@@ -112,7 +85,7 @@ var Stopwatch = function (_React$Component) {
 	}, {
 		key: "step",
 		value: function step() {
-			if (!this.running) return;
+			if (!this.state.running) return;
 			this.calculate();
 			this.print();
 		}
@@ -122,7 +95,7 @@ var Stopwatch = function (_React$Component) {
 	}, {
 		key: "calculate",
 		value: function calculate() {
-			this.times.miliseconds += 1;
+			this.state.times.miliseconds += 1;
 			if (this.times.miliseconds >= 100) {
 				this.times.seconds += 1;
 				this.times.miliseconds = 0;
@@ -133,7 +106,7 @@ var Stopwatch = function (_React$Component) {
 			}
 		}
 
-		// stop stopwatch
+		// stop stopwatch 
 
 	}, {
 		key: "stop",
@@ -150,13 +123,45 @@ var Stopwatch = function (_React$Component) {
 			this.reset();
 			this.print();
 		}
+	}, {
+		key: "render",
+		value: function render() {
+			return React.createElement(
+				"div",
+				{ className: "counter" },
+				React.createElement(
+					"nav",
+					{ className: "controls" },
+					React.createElement(
+						"a",
+						{ href: "#", className: "button", onClick: this.start = this.start.bind(this) },
+						"Start"
+					),
+					React.createElement(
+						"a",
+						{ href: "#", className: "button", onClick: this.stop = this.stop.bind(this) },
+						"Stop"
+					),
+					React.createElement(
+						"a",
+						{ href: "#", className: "button", onClick: this.reset = this.reset.bind(this) },
+						"Reset"
+					)
+				),
+				React.createElement(
+					"div",
+					{ className: "stopwatch", id: "watch" },
+					this.format.bind()
+				)
+			);
+		}
 	}]);
 
 	return Stopwatch;
 }(React.Component);
 
-var stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
-
 // react
+
+
 var app = React.createElement(Stopwatch);
 ReactDOM.render(app, document.getElementById("app"));
