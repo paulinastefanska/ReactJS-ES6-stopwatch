@@ -72,7 +72,7 @@ var Stopwatch = function (_React$Component) {
 		value: function start() {
 			var _this2 = this;
 
-			if (!this.state.running) {
+			if (!this.running) {
 				this.running = true;
 				this.watch = setInterval(function () {
 					return _this2.step();
@@ -111,7 +111,7 @@ var Stopwatch = function (_React$Component) {
 	}, {
 		key: "stop",
 		value: function stop() {
-			this.state.running = false;
+			this.running = false;
 			clearInterval(this.watch);
 		}
 
